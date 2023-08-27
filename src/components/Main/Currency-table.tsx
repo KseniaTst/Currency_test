@@ -8,16 +8,17 @@ import {
 	Paper,
 } from '@mui/material'
 import { AddCurrencyModal } from './addCurrencyModal/Add-currency-modal'
+import style from './main.module.scss'
 
 export const CurrencyTable = () => {
 
 
 	return (
-		<TableContainer component={Paper}>
+		<TableContainer component={Paper} className={style.tableContainer}>
 			<Table>
 				<TableHead>
 					<TableRow>
-						<TableCell width={'200px'}>Name</TableCell>
+						<TableCell width={'100px'}>Name</TableCell>
 						<TableCell width={'50px'}>
 							Price $
 						</TableCell>
