@@ -5,7 +5,7 @@ export const Main = () => {
 
 	return (
 		<div className={style.container}>
-			<CurrencyTable />
+			<CurrencyTable  />
 		</div>
 	)
 }

@@ -9,9 +9,12 @@ import {
 } from '@mui/material'
 import { AddCurrencyModal } from './addCurrencyModal/Add-currency-modal'
 import style from './main.module.scss'
+import { useAppSelector } from '../../common/hooks/useAppSelector'
+import { NavLink } from 'react-router-dom'
 
 export const CurrencyTable = () => {
 
+	const currencies = useAppSelector(state => state.main.mainData.currencies)
 
 	return (
 		<TableContainer component={Paper} className={style.tableContainer}>
@@ -20,10 +23,10 @@ export const CurrencyTable = () => {
 					<TableRow>
 						<TableCell width={'100px'}>Name</TableCell>
 						<TableCell width={'50px'}>
-							Price $
+							Price USD
 						</TableCell>
-						<TableCell align='center' width={'100px'}>
-							Last updated
+						<TableCell align='center' width={'70px'}>
+							Supply
 						</TableCell>
 						<TableCell align='center' width={'100px'}>
 							Add
@@ -31,14 +34,20 @@ export const CurrencyTable = () => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					<TableRow>
-						<TableCell> Bitcoin</TableCell>
-						<TableCell>20000</TableCell>
-						<TableCell>26.08.2023 21:55</TableCell>
-						<TableCell align={'center'}>
-							<AddCurrencyModal />
-						</TableCell>
-					</TableRow>
+					{currencies.map(curr => {
+						const price = Number(curr.priceUsd).toFixed(4)
+						const supply = Number(curr.supply).toFixed(4)
+						return (
+							<TableRow>
+								<TableCell><NavLink to = {`/${curr.name}`}>{curr.name}</NavLink></TableCell>
+								<TableCell>{price}</TableCell>
+								<TableCell>{supply}</TableCell>
+								<TableCell align={'center'}>
+									<AddCurrencyModal />
+								</TableCell>
+							</TableRow>
+						)
+					})}
 				</TableBody>
 			</Table>
 		</TableContainer>

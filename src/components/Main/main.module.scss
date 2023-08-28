@@ -1,7 +1,17 @@
 .container {
-  padding: 15%;
+  padding-top: 120px;
 }
 .tableContainer {
-  width: 75% !important;
+  width: 50% !important;
   margin: 0 auto;
+
+  a {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+      color: #1976d2;
+    }
+  }
 }
