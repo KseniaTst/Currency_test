@@ -5,7 +5,8 @@ import { useAppSelector } from '../../common/hooks/useAppSelector'
 
 export const Header = () => {
 
-	const currencies = useAppSelector((state)=>state.header.headerData.currencies)
+	const currencies = useAppSelector((state) => state.header.headerData.currencies)
+	const totalPrice = useAppSelector(state => state.portfolio.portfolioData.totalPrice)
 
 	return (
 		<>
@@ -22,7 +23,10 @@ export const Header = () => {
 						})
 					}
 				</Toolbar>
-				<Portfolio />
+				<div className={style.profileBlock}>
+					<h6>{totalPrice.toFixed(4)} USD</h6>
+					<Portfolio />
+				</div>
 			</AppBar>
 		</>
 	)

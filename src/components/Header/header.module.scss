@@ -19,3 +19,13 @@
     font-weight: 300;
   }
 }
+
+.profileBlock {
+  display: flex;
+  justify-content: right;
+
+  h6 {
+    margin: auto 15px;
+    font-size: 15px;
+  }
+}

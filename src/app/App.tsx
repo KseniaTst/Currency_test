@@ -5,6 +5,7 @@ import { Main } from '../components/Main/Main'
 import { useAppDispatch } from '../common/hooks/useAppDispatch'
 import { getPopularCurrThunk } from '../components/Header/header-slice'
 import { getCurrenciesThunk } from '../components/Main/main-slice'
+import { loadCurrencies } from '../components/Currency-portfolio/portfolio-slice'
 
 function App() {
 
@@ -13,6 +14,12 @@ function App() {
 	useEffect(() => {
 		dispatch(getPopularCurrThunk())
 		dispatch(getCurrenciesThunk())
+		let currencies = []
+		if (localStorage.getItem('storedCurrencies') !==null) {
+			// @ts-ignore
+			currencies = JSON.parse(localStorage.getItem('storedCurrencies'))
+			dispatch(loadCurrencies(currencies))
+		}
 	}, [])
 
 	return (
