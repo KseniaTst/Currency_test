@@ -6,11 +6,6 @@ import { AxiosResponse } from 'axios'
 const initialState = {
 	headerData: {
 		currencies: [] as CurrencyType[],
-		profile: {
-			totalPrice: 0,
-			difference: '',
-			percentageDiff: ''
-		}
 	},
 }
 
@@ -30,7 +25,7 @@ export const getPopularCurrThunk =
 	(): ThunkType =>
 		(dispatch) => {
 			headerApi
-				.getPopularСurr()
+				.getPopularCurr()
 				.then((res: AxiosResponse<ResponseGetCurrType>) => {
 					dispatch(setPopularCurrencies(res.data.data))
 				})

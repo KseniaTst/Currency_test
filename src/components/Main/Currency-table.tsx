@@ -11,10 +11,19 @@ import { AddCurrencyModal } from './addCurrencyModal/Add-currency-modal'
 import style from './main.module.scss'
 import { useAppSelector } from '../../common/hooks/useAppSelector'
 import { NavLink } from 'react-router-dom'
+import { useAppDispatch } from '../../common/hooks/useAppDispatch'
+import { getCurrToProfileThunk } from '../Currency-portfolio/portfolio-slice'
+import { CurrencyType } from '../Header/header-api'
 
 export const CurrencyTable = () => {
 
+	const dispatch = useAppDispatch()
+
 	const currencies = useAppSelector(state => state.main.mainData.currencies)
+
+	const addCurrToProfile = (amount: number, currency: CurrencyType) => {
+		dispatch(getCurrToProfileThunk(amount, currency))
+	}
 
 	return (
 		<TableContainer component={Paper} className={style.tableContainer}>
@@ -43,7 +52,7 @@ export const CurrencyTable = () => {
 								<TableCell>{price}</TableCell>
 								<TableCell>{supply}</TableCell>
 								<TableCell align={'center'}>
-									<AddCurrencyModal />
+									<AddCurrencyModal addCurrToProfile={addCurrToProfile} currency={curr} />
 								</TableCell>
 							</TableRow>
 						)
