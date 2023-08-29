@@ -2,8 +2,9 @@ import { instance } from '../../common/config/api-config'
 import { ResponseGetCurrType } from '../Header/header-api'
 
 export const mainApi = {
-	getCurrencies() {
-		return instance.get<ResponseGetCurrType>('', { params: { limit: 15 } })
+	getCurrencies(offset?: number) {
+		if (offset) offset = offset * 15
+		return instance.get<ResponseGetCurrType>('', { params: { limit: 15, offset } })
 	},
 	getCurrency(id: string) {
 		return instance.get<ResponseGetCurrType>(`/${id}`)

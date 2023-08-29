@@ -6,6 +6,9 @@ import { useAppSelector } from '../../common/hooks/useAppSelector'
 import { List, ListItem } from '@mui/material'
 import { Chart } from '../../common/conponents/Chart'
 import style from './main.module.scss'
+import { AddCurrencyModal } from './addCurrencyModal/Add-currency-modal'
+import { CurrencyType } from '../Header/header-api'
+import { getCurrToProfileThunk } from '../Currency-portfolio/portfolio-slice'
 
 export const CurrencyPage = () => {
 	const params = useParams()
@@ -14,6 +17,10 @@ export const CurrencyPage = () => {
 
 	const currency = useAppSelector(state => state.main.mainData.selectedCurrency)
 	const history = useAppSelector(state => state.main.mainData.currencyHistory)
+
+	const addCurrToProfile = (amount: number, currency: CurrencyType) => {
+		dispatch(getCurrToProfileThunk(amount, currency))
+	}
 
 	useEffect(() => {
 		if (currencyId) {
@@ -26,6 +33,7 @@ export const CurrencyPage = () => {
 	return (
 		<section>
 			<h2>{currency.name}</h2>
+			<AddCurrencyModal addCurrToProfile={addCurrToProfile} currency={currency} />
 			<div className={style.pageBlock}>
 				<List>
 					<ListItem>Symbol: {currency.symbol}</ListItem>

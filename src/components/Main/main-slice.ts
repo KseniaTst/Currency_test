@@ -30,10 +30,10 @@ export const mainSlice = createSlice({
 
 export const { setCurrencies, setCurrency, setHistory } = mainSlice.actions
 
-export const getCurrenciesThunk = (): ThunkType =>
+export const getCurrenciesThunk = (offset?:number): ThunkType =>
 	(dispatch) => {
 		mainApi
-			.getCurrencies()
+			.getCurrencies(offset)
 			.then((res: AxiosResponse<ResponseGetCurrType>) => {
 				dispatch(setCurrencies(res.data.data))
 			})
