@@ -1,11 +1,11 @@
-import { CurrencyTable } from './Currency-table'
 import style from './main.module.scss'
+import { Routing } from '../routing/Routing'
 
 export const Main = () => {
 
 	return (
 		<div className={style.container}>
-			<CurrencyTable  />
+			<Routing />
 		</div>
 	)
 }

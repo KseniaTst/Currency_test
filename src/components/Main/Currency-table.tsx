@@ -39,7 +39,7 @@ export const CurrencyTable = () => {
 						const supply = Number(curr.supply).toFixed(4)
 						return (
 							<TableRow>
-								<TableCell><NavLink to = {`/${curr.name}`}>{curr.name}</NavLink></TableCell>
+								<TableCell><NavLink to={`/${curr.id}`}>{curr.name}</NavLink></TableCell>
 								<TableCell>{price}</TableCell>
 								<TableCell>{supply}</TableCell>
 								<TableCell align={'center'}>
