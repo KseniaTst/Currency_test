@@ -14,7 +14,7 @@ import { NavLink } from 'react-router-dom'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { getCurrToProfileThunk } from '../Currency-portfolio/portfolio-slice'
 import { CurrencyType } from '../Header/header-api'
-import { TablePagination } from './TablePagination'
+import { TablePagination } from './Pagination/TablePagination'
 
 export const CurrencyTable = () => {
 
@@ -28,7 +28,7 @@ export const CurrencyTable = () => {
 	}
 
 	return (
-		<>
+		<section>
 		<TableContainer component={Paper} className={style.tableContainer}>
 			<Table>
 				<TableHead>
@@ -64,6 +64,6 @@ export const CurrencyTable = () => {
 			</Table>
 		</TableContainer>
 			<TablePagination/>
-		</>
+		</section>
 	)
 }

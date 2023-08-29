@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import Stack from '@mui/material/Stack'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { getCurrenciesThunk } from './main-slice'
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { getCurrenciesThunk } from '../main-slice'
 import { Pagination } from '@mui/material'
+import style from './pagination.module.scss'
 
 export const TablePagination = () => {
   const [page, setPage] = useState(1)
@@ -15,7 +16,7 @@ export const TablePagination = () => {
   }
 
   return (
-    <Stack spacing={2}>
+    <Stack spacing={2} className={style.container}>
       {/*<Typography>Page: {page}</Typography>*/}
       <Pagination count={Math.ceil(2000/15)} page={page} onChange={handleChange} />
     </Stack>
