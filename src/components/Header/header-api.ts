@@ -1,7 +1,7 @@
 import { instance } from '../../common/config/api-config'
 
 export const headerApi = {
-	getPopularСurr() {
+	getPopularCurr() {
 		return instance.get<ResponseGetCurrType>('', { params: {limit: 3} })
 	},
 
