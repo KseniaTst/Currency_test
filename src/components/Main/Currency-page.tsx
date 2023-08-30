@@ -17,6 +17,8 @@ export const CurrencyPage = () => {
 
 	const currency = useAppSelector(state => state.main.mainData.selectedCurrency)
 	const history = useAppSelector(state => state.main.mainData.currencyHistory)
+	const currencyAmount = useAppSelector(state => state.portfolio.currencyAmount)
+
 
 	const addCurrToProfile = (amount: number, currency: CurrencyType) => {
 		dispatch(getCurrToProfileThunk(amount, currency))
@@ -28,6 +30,11 @@ export const CurrencyPage = () => {
 			dispatch(getHistoryThunk(currencyId))
 		}
 	}, [])
+
+	useEffect(()=> {
+		if (currencyAmount.length > 0)
+			localStorage.setItem('storedCurrAmounts', JSON.stringify(currencyAmount))
+	}, [currencyAmount])
 
 
 	return (
