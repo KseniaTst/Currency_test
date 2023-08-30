@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ThunkType } from '../../app/store'
 import { portfolioApi } from './portfolio-api'
 import { AxiosResponse } from 'axios'
+import { getTotalPrice } from '../../common/utils/getTotalPrice'
 
 const initialState = {
 	portfolioData: {
@@ -14,7 +15,6 @@ const initialState = {
 	previousTotalPrice: 0,
 	currencyAmount: [] as CurrencyAmount[],
 }
-const getTotalPrice = (arr: any) => arr.reduce((sum: number, obg: any) => Number(obg.priceUsd) + sum, 0)
 
 export const portfolioSlice = createSlice({
 	name: 'portfolio',
