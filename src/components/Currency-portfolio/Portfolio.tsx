@@ -12,9 +12,11 @@ export const Portfolio = () => {
 
 	const dispatch = useAppDispatch()
 
-	const profileCurr = useAppSelector(state => state.portfolio.portfolioData.currencies)
+	const portfolioCurr = useAppSelector(state => state.portfolio.portfolioData.currencies)
 	const totalPrice = useAppSelector(state => state.portfolio.portfolioData.totalPrice)
 	const cuttedTotalPrice = totalPrice.toFixed(4)
+	const currNames: string[] = portfolioCurr.map(curr => curr.id)
+
 
 	const [open, setOpen] = useState(false)
 
@@ -22,17 +24,20 @@ export const Portfolio = () => {
 
 	const handleOpen = () => setOpen(true)
 
-	const onRemoveCurrency = useCallback( (id: string, price: string) => {
-		 dispatch(removeCurrency({ id, price }))
-		localStorage.setItem('storedCurrencies', JSON.stringify(profileCurr))
+	const onRemoveCurrency = useCallback((id: string, price: string) => {
+		dispatch(removeCurrency({ id, price }))
+		localStorage.setItem('storedCurrencies', JSON.stringify(currNames))
+		localStorage.setItem('storedTotalPrice', JSON.stringify(totalPrice))
 
-	},[dispatch])
+	}, [dispatch])
 
 	useEffect(() => {
-		if (profileCurr.length !== 0)
-		localStorage.setItem('storedCurrencies', JSON.stringify(profileCurr));
+		if (portfolioCurr.length !== 0) {
+			localStorage.setItem('storedCurrencies', JSON.stringify(currNames))
+			localStorage.setItem('storedTotalPrice', JSON.stringify(totalPrice))
+		}
 
-	}, [profileCurr])
+	}, [portfolioCurr])
 
 
 	return (
@@ -41,7 +46,7 @@ export const Portfolio = () => {
 													onClick={handleOpen} />
 			<BasicModal open={open} handleClose={handleClose} modalName={'Currency portfolio'}>
 				<List>
-					{profileCurr.map(curr => {
+					{portfolioCurr.map(curr => {
 						const price = Number(curr.priceUsd).toFixed(4)
 						return <ListItem className={style.listItem} key={curr.id}>
 							<p>{curr.name}</p>

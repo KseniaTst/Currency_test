@@ -15,17 +15,25 @@ import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { getCurrToProfileThunk } from '../Currency-portfolio/portfolio-slice'
 import { CurrencyType } from '../Header/header-api'
 import { TablePagination } from './Pagination/TablePagination'
+import { useEffect } from 'react'
 
 export const CurrencyTable = () => {
 
 	const dispatch = useAppDispatch()
 
 	const currencies = useAppSelector(state => state.main.mainData.currencies)
+	const currencyAmount = useAppSelector(state => state.portfolio.currencyAmount)
 
 
-	const addCurrToProfile = (amount: number, currency: CurrencyType) => {
-		dispatch(getCurrToProfileThunk(amount, currency))
+	const addCurrToProfile = async (amount: number, currency: CurrencyType) => {
+		await dispatch(getCurrToProfileThunk(amount, currency))
+
 	}
+
+	useEffect(()=> {
+		if (currencyAmount.length > 0)
+			localStorage.setItem('storedCurrAmounts', JSON.stringify(currencyAmount))
+	}, [currencyAmount])
 
 	return (
 		<section>

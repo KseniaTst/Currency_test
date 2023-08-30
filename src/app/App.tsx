@@ -5,7 +5,7 @@ import { Main } from '../components/Main/Main'
 import { useAppDispatch } from '../common/hooks/useAppDispatch'
 import { getPopularCurrThunk } from '../components/Header/header-slice'
 import { getCurrenciesThunk } from '../components/Main/main-slice'
-import { loadCurrencies } from '../components/Currency-portfolio/portfolio-slice'
+import { loadCurrToProfileThunk } from '../components/Currency-portfolio/portfolio-slice'
 
 function App() {
 
@@ -15,10 +15,14 @@ function App() {
 		dispatch(getPopularCurrThunk())
 		dispatch(getCurrenciesThunk())
 		let currencies = []
-		if (localStorage.getItem('storedCurrencies') !==null) {
+		if (localStorage.getItem('storedCurrencies') && localStorage.getItem('storedTotalPrice')) {
 			// @ts-ignore
 			currencies = JSON.parse(localStorage.getItem('storedCurrencies'))
-			dispatch(loadCurrencies(currencies))
+			// @ts-ignore
+			const previousTotalPrice = JSON.parse(localStorage.getItem('storedTotalPrice'))
+			// @ts-ignore
+			const amount = JSON.parse(localStorage.getItem('storedCurrAmounts'))
+			dispatch(loadCurrToProfileThunk(currencies, previousTotalPrice, amount))
 		}
 	}, [])
 

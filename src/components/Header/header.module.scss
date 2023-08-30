@@ -5,6 +5,7 @@
 
   padding: 0 20px;
 }
+
 .currBlock {
   display: flex;
   flex-direction: column;
@@ -14,6 +15,7 @@
     font-size: 20px;
     margin: 0;
   }
+
   p {
     margin: 0;
     font-weight: 300;
@@ -25,7 +27,18 @@
   justify-content: right;
 
   h6 {
-    margin: auto 15px;
+    margin: auto 5px auto 15px;
     font-size: 15px;
+  }
+
+  p {
+    margin: auto 5px auto 0;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 650px) {
+  .currBlock {
+    display: none;
   }
 }

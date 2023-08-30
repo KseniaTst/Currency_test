@@ -1,6 +1,8 @@
-import { CurrencyType } from '../Header/header-api'
+import { CurrencyType, ResponseGetCurrType } from '../Header/header-api'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ThunkType } from '../../app/store'
+import { portfolioApi } from './portfolio-api'
+import { AxiosResponse } from 'axios'
 
 const initialState = {
 	portfolioData: {
@@ -9,6 +11,8 @@ const initialState = {
 		difference: 0,
 		percentageDiff: '',
 	},
+	previousTotalPrice: 0,
+	currencyAmount: [] as CurrencyAmount[],
 }
 const getTotalPrice = (arr: any) => arr.reduce((sum: number, obg: any) => Number(obg.priceUsd) + sum, 0)
 
@@ -16,14 +20,16 @@ export const portfolioSlice = createSlice({
 	name: 'portfolio',
 	initialState,
 	reducers: {
-		loadCurrencies (state, action:PayloadAction<CurrencyType[]>){
-			state.portfolioData.currencies = action.payload
+		loadCurrencies(state, action: PayloadAction<LoadCurrType>) {
+			state.portfolioData.currencies = action.payload.currencies
+			state.previousTotalPrice = action.payload.previousTotalPrice
 			state.portfolioData.totalPrice = getTotalPrice(state.portfolioData.currencies)
 
 		},
-		setCurrToProfile(state, action: PayloadAction<CurrencyType>) {
-			state.portfolioData.currencies.push(action.payload)
+		setCurrToProfile(state, action: PayloadAction<setCurrToProfileType>) {
+			state.portfolioData.currencies.push(action.payload.currency)
 			state.portfolioData.totalPrice = getTotalPrice(state.portfolioData.currencies)
+			state.currencyAmount.push({ key: action.payload.currency.id, amount: Number(action.payload.amount) })
 		},
 		removeCurrency(state, action: PayloadAction<RemoveCurrPayloadType>) {
 			const index = state.portfolioData.currencies.findIndex(curr => curr.id === action.payload.id)
@@ -50,19 +56,37 @@ export const { setCurrToProfile, removeCurrency, changeCurrPrice, loadCurrencies
 
 export const getCurrToProfileThunk = (amount: number, currency: CurrencyType): ThunkType =>
 	(dispatch, getState) => {
-
 		const price = Number(currency.priceUsd) * amount
-
 		const updCurrency = { ...currency, priceUsd: price.toString() }
 		const id = getState().portfolio.portfolioData.currencies.find(el => el.id === currency.id)
+
 		if (amount > 0) {
 			if (id) {
 				dispatch(changeCurrPrice({ id: currency.id, price: price }))
 				return
 			}
-			dispatch(setCurrToProfile(updCurrency))
-
+			dispatch(setCurrToProfile({ currency: updCurrency, amount }))
 		}
+	}
+export const loadCurrToProfileThunk = (currencies: string[], previousTotalPrice: number, amount: CurrencyAmount[]): ThunkType =>
+	(dispatch) => {
+		if (currencies.length === 0) return
+
+		portfolioApi
+			.getPortfolioCurr(currencies)
+			.then((res: AxiosResponse<ResponseGetCurrType>) => {
+				res.data.data.map(curr => {
+					amount.map(el => {
+						if (curr.id === el.key) {
+							return curr.priceUsd = (Number(curr.priceUsd) * el.amount).toString()
+						}
+					})
+				})
+				dispatch(loadCurrencies({ currencies: res.data.data, previousTotalPrice }))
+			})
+			.catch(error => {
+				alert(error)
+			})
 	}
 
 type ChangeCurrPayloadType = {
@@ -72,4 +96,17 @@ type ChangeCurrPayloadType = {
 type RemoveCurrPayloadType = {
 	id: string,
 	price: string
+}
+type LoadCurrType = {
+	currencies: CurrencyType[]
+	previousTotalPrice: number
+}
+type CurrencyAmount = {
+	key: string
+	amount: number
+}
+
+type setCurrToProfileType = {
+	currency: CurrencyType
+	amount: number
 }

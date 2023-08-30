@@ -7,6 +7,11 @@ export const Header = () => {
 
 	const currencies = useAppSelector((state) => state.header.headerData.currencies)
 	const totalPrice = useAppSelector(state => state.portfolio.portfolioData.totalPrice)
+	const previousTotalPrice = useAppSelector(state => state.portfolio.previousTotalPrice)
+	const difference = (totalPrice - previousTotalPrice).toFixed(2)
+	let pesentageDiff: string | number = (totalPrice / previousTotalPrice * 100 - 100).toFixed(2)
+
+	if (previousTotalPrice === 0)  pesentageDiff = 0
 
 	return (
 		<>
@@ -25,6 +30,8 @@ export const Header = () => {
 				</Toolbar>
 				<div className={style.profileBlock}>
 					<h6>{totalPrice.toFixed(4)} USD</h6>
+					<p>{difference}</p>
+					<p>({pesentageDiff}%)</p>
 					<Portfolio />
 				</div>
 			</AppBar>
