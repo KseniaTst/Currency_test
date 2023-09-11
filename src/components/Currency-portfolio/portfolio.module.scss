@@ -1,7 +1,29 @@
 .listItem {
-  display: flex ;
-  flex-direction: row ;
+  display: flex;
+  flex-direction: row;
   justify-content: space-between !important;
+}
+
+.iconContainer {
+  display: flex;
+  flex-direction: column;
+
+  width: 65px;
+  height: 55px;
+
+  padding: 5px;
+  overflow: hidden;
+
+  cursor: pointer;
+
+  img {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  a {
+    font-size: 14px;
+  }
 }
 
 .icon {

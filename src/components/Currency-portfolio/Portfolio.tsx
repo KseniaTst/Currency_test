@@ -1,12 +1,11 @@
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter'
+import BusinessIcon from '../../assets/icons/pngegg.png'
 import { BasicModal } from '../../common/modal/Basic-modal'
 import style from './portfolio.module.scss'
-import { IconButton, List, ListItem } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete'
 import { useCallback, useEffect, useState } from 'react'
 import { useAppSelector } from '../../common/hooks/use-app-selector'
 import { useAppDispatch } from '../../common/hooks/use-app-dispatch'
 import { removeCurrency } from './portfolio-slice'
+import { DeleteButton } from '../../common/components/Button/DeleteButton/DeleteButton'
 
 export const Portfolio = () => {
 
@@ -42,23 +41,21 @@ export const Portfolio = () => {
 
 	return (
 		<>
-			<BusinessCenterIcon fontSize={'large'} className={style.icon}
-													onClick={handleOpen} />
+			<div className={style.iconContainer} onClick={handleOpen}>
+				<img src={BusinessIcon} alt={''}/>
+				<a>portfolio</a>
+			</div>
 			<BasicModal open={open} handleClose={handleClose} modalName={'Currency portfolio'}>
-				<List>
+				<ul>
 					{portfolioCurr.map(curr => {
 						const price = Number(curr.priceUsd).toFixed(4)
-						return <ListItem className={style.listItem} key={curr.id}>
+						return <li className={style.listItem} key={curr.id}>
 							<p>{curr.name}</p>
 							<p>{price} USD</p>
-							<IconButton aria-label='delete'
-													className={style.icon}
-													onClick={() => onRemoveCurrency(curr.id, curr.priceUsd)}>
-								<DeleteIcon />
-							</IconButton>
-						</ListItem>
+							<DeleteButton onClick={() => onRemoveCurrency(curr.id, curr.priceUsd)} />
+						</li>
 					})}
-				</List>
+				</ul>
 				<div>
 					<p>Total price: {cuttedTotalPrice}</p>
 				</div>
