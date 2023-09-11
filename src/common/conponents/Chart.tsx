@@ -1,6 +1,6 @@
 import { LineChart, CartesianGrid, Line, XAxis, YAxis } from 'recharts'
 import { HistoryType } from '../../components/Main/main-api'
-import { ConvertDate } from '../utils/convertDate'
+import { ConvertDate } from '../utils/convert-date'
 
 type PropsType = {
 	data: HistoryType[]

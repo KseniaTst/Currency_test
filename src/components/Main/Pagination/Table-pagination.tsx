@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Stack from '@mui/material/Stack'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { useAppDispatch } from '../../../common/hooks/use-app-dispatch'
 import { getCurrenciesThunk } from '../main-slice'
 import { Pagination } from '@mui/material'
 import style from './pagination.module.scss'

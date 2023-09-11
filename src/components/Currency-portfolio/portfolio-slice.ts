@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ThunkType } from '../../app/store'
 import { portfolioApi } from './portfolio-api'
 import { AxiosResponse } from 'axios'
-import { getTotalPrice } from '../../common/utils/getTotalPrice'
+import { getTotalPrice } from '../../common/utils/get-total-price'
 
 const initialState = {
 	portfolioData: {

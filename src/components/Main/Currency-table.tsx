@@ -7,14 +7,14 @@ import {
 	TableCell,
 	Paper,
 } from '@mui/material'
-import { AddCurrencyModal } from './addCurrencyModal/Add-currency-modal'
+import { AddCurrencyModal } from './add-currency-modal/Add-currency-modal'
 import style from './main.module.scss'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
+import { useAppSelector } from '../../common/hooks/use-app-selector'
 import { NavLink } from 'react-router-dom'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
+import { useAppDispatch } from '../../common/hooks/use-app-dispatch'
 import { getCurrToProfileThunk } from '../Currency-portfolio/portfolio-slice'
 import { CurrencyType } from '../Header/header-api'
-import { TablePagination } from './Pagination/TablePagination'
+import { TablePagination } from './Pagination/Table-pagination'
 import { useEffect } from 'react'
 
 export const CurrencyTable = () => {

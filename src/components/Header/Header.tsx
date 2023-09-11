@@ -1,7 +1,7 @@
 import { AppBar, Toolbar } from '@mui/material'
 import style from './header.module.scss'
 import { Portfolio } from '../Currency-portfolio/Portfolio'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
+import { useAppSelector } from '../../common/hooks/use-app-selector'
 
 export const Header = () => {
 
