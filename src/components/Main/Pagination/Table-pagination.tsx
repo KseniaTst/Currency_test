@@ -17,7 +17,6 @@ export const TablePagination = () => {
 
   return (
     <Stack spacing={2} className={style.container}>
-      {/*<Typography>Page: {page}</Typography>*/}
       <Pagination count={Math.ceil(2000/15)} page={page} onChange={handleChange} />
     </Stack>
   )

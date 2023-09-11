@@ -1,1 +1,3 @@
-export const getTotalPrice = (arr: any) => arr.reduce((sum: number, obg: any) => Number(obg.priceUsd) + sum, 0)
+import { CurrencyType } from '../../components/Header/header-api'
+
+export const getTotalPrice = (arr: CurrencyType[]) => arr.reduce((sum: number, obg: CurrencyType) => Number(obg.priceUsd) + sum, 0)
