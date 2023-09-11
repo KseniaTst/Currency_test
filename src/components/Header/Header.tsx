@@ -1,4 +1,3 @@
-import { AppBar, Toolbar } from '@mui/material'
 import style from './header.module.scss'
 import { Portfolio } from '../Currency-portfolio/Portfolio'
 import { useAppSelector } from '../../common/hooks/use-app-selector'
@@ -14,9 +13,8 @@ export const Header = () => {
 	if (previousTotalPrice === 0)  pesentageDiff = 0
 
 	return (
-		<>
-			<AppBar className={style.container}>
-				<Toolbar>
+			<header className={style.container}>
+				<div className={style.popularCurrBlock}>
 					{
 						currencies.map((curr) => {
 							const currencyPrice = Number(curr.priceUsd).toFixed(4)
@@ -27,14 +25,13 @@ export const Header = () => {
 							</div>
 						})
 					}
-				</Toolbar>
+				</div>
 				<div className={style.profileBlock}>
 					<h6>{totalPrice.toFixed(4)} USD</h6>
 					<p>{difference}</p>
 					<p>({pesentageDiff}%)</p>
 					<Portfolio />
 				</div>
-			</AppBar>
-		</>
+			</header>
 	)
 }
