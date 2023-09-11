@@ -2,7 +2,7 @@ import { TextField } from '../../../common/components/TextField/TextField'
 import { BasicModal } from '../../../common/modal/BasicModal'
 import { ChangeEvent, useState } from 'react'
 import style from './addCurrencyModal.module.scss'
-import { CurrencyType } from '../../Header/headerApi'
+import { CurrencyType } from '../../../services/headerApi'
 import { CustomButton } from '../../../common/components/Button/Button'
 
 type PropsType = {
@@ -23,12 +23,12 @@ export const AddCurrencyModal = (props: PropsType) => {
 	const handleOpen = () => setOpen(true)
 
 	const handleChangeAmount = (event: ChangeEvent<HTMLInputElement>) => {
-		const number = parseFloat(event.currentTarget.value)
-		number && setAmount(event.currentTarget.value)
+		 setAmount(event.currentTarget.value)
 	}
 
 	const handleClickAdd = () => {
 		const number = parseFloat(amount)
+		number &&
 		addCurrToProfile(number, currency)
 		setOpen(false)
 	}

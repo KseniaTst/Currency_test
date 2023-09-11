@@ -6,7 +6,7 @@ import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import { Chart } from '../../../common/components/Chart'
 import style from './currencyPage.module.scss'
 import { AddCurrencyModal } from '../addCurrencyModal/AddCurrencyModal'
-import { CurrencyType } from '../../Header/headerApi'
+import { CurrencyType } from '../../../services/headerApi'
 import { getCurrToProfileThunk } from '../../CurrencyPortfolio/portfolioSlice'
 
 export const CurrencyPage = () => {

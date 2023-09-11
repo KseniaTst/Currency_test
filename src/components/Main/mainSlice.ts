@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ThunkType } from '../../app/store'
 import { AxiosResponse } from 'axios'
-import { HistoryType, mainApi } from './mainApi'
-import { CurrencyType, ResponseGetCurrType } from '../Header/headerApi'
+import { HistoryType, mainApi } from '../../services/mainApi'
+import { CurrencyType, ResponseGetCurrType } from '../../services/headerApi'
 
 const initialState = {
 	mainData: {
@@ -30,7 +30,7 @@ export const mainSlice = createSlice({
 
 export const { setCurrencies, setCurrency, setHistory } = mainSlice.actions
 
-export const getCurrenciesThunk = (offset?:number): ThunkType =>
+export const getCurrenciesThunk = (offset?: number): ThunkType =>
 	(dispatch) => {
 		mainApi
 			.getCurrencies(offset)

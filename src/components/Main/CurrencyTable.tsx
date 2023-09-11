@@ -4,7 +4,7 @@ import { useAppSelector } from '../../common/hooks/useAppSelector'
 import { NavLink } from 'react-router-dom'
 import { useAppDispatch } from '../../common/hooks/useAppDispatch'
 import { getCurrToProfileThunk } from '../CurrencyPortfolio/portfolioSlice'
-import { CurrencyType } from '../Header/headerApi'
+import { CurrencyType } from '../../services/headerApi'
 import { TablePagination } from './Pagination/TablePagination'
 import { useEffect } from 'react'
 

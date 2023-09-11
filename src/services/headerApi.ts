@@ -1,4 +1,4 @@
-import { instance } from '../../common/config/apiConfig'
+import { instance } from '../common/config/apiConfig'
 
 export const headerApi = {
 	getPopularCurr() {

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CurrencyType, headerApi, ResponseGetCurrType } from './headerApi'
+import { CurrencyType, headerApi, ResponseGetCurrType } from '../../services/headerApi'
 import { ThunkType } from '../../app/store'
 import { AxiosResponse } from 'axios'
 

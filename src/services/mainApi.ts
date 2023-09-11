@@ -1,5 +1,5 @@
-import { instance } from '../../common/config/apiConfig'
-import { ResponseGetCurrType } from '../Header/headerApi'
+import { instance } from '../common/config/apiConfig'
+import { ResponseGetCurrType } from './headerApi'
 
 export const mainApi = {
 	getCurrencies(offset?: number) {
