@@ -1,8 +1,9 @@
-import { Button, TextField } from '@mui/material'
+import { TextField } from '../../../common/components/TextField/TextField'
 import { BasicModal } from '../../../common/modal/Basic-modal'
 import { ChangeEvent, useState } from 'react'
 import style from './add-currency-modal.module.scss'
 import { CurrencyType } from '../../Header/header-api'
+import { CustomButton } from '../../../common/components/Button/Button'
 
 type PropsType = {
 	addCurrToProfile: (amount: number, currency: CurrencyType) => void
@@ -29,30 +30,26 @@ export const AddCurrencyModal = (props: PropsType) => {
 		addCurrToProfile(amount, currency)
 		setOpen(false)
 	}
-
 	return (
 		<>
-			<Button variant={'outlined'} onClick={handleOpen}>Add</Button>
+			<CustomButton text={'Add'} onClick={handleOpen} />
 			<BasicModal open={open} handleClose={handleClose} modalName={'Add'} currencyName={currency.name}>
 				<div className={style.textContainer}>
-					<TextField
-						type={'number'}
-						variant={'standard'}
-						value={amount}
-						onChange={handleChangeAmount}
-						label={'amount'}
-						fullWidth
-						placeholder={'0.1'}
-						autoFocus
-					/>
+					<TextField value={amount} onChange={handleChangeAmount} label={'Amount'} />
+					{/*<TextField*/}
+					{/*	type={'number'}*/}
+					{/*	variant={'standard'}*/}
+					{/*	value={amount}*/}
+					{/*	onChange={handleChangeAmount}*/}
+					{/*	label={'amount'}*/}
+					{/*	fullWidth*/}
+					{/*	placeholder={'0.1'}*/}
+					{/*	autoFocus*/}
+					{/*/>*/}
 				</div>
 				<div className={style.buttonBlock}>
-					<Button variant={'contained'} onClick={handleClose}>
-						Close
-					</Button>
-					<Button variant={'contained'} color={'success'} onClick={handleClickAdd}>
-						Add
-					</Button>
+					<CustomButton text={'Close'} onClick={handleClose} />
+					<CustomButton text={'Add'} onClick={handleClickAdd} />
 				</div>
 			</BasicModal>
 		</>

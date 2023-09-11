@@ -1,0 +1,39 @@
+.close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  width: 24px;
+  height: 24px;
+  opacity: 0.2;
+
+  border: none;
+
+  background: transparent;
+  cursor: pointer;
+
+  transition: opacity ease 0.5s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.close::before,
+.close::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  display: block;
+  width: 20px;
+  height: 3px;
+
+  background: #000;
+}
+
+.close::before {
+  transform: rotate(45deg);
+}
+
+.close::after {
+  transform: rotate(-45deg);
+}

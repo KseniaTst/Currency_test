@@ -1,21 +1,7 @@
 import * as React from 'react'
-import Box from '@mui/material/Box'
-import Modal from '@mui/material/Modal'
 import { ReactNode } from 'react'
-import CloseIcon from '@mui/icons-material/Close'
 import style from './basic-modal.module.scss'
-
-const BoxStyle = {
-	position: 'absolute' as 'absolute',
-	top: '50%',
-	left: '50%',
-	transform: 'translate(-50%, -50%)',
-	width: 400,
-	bgcolor: 'background.paper',
-	border: '2px solid #000',
-	boxShadow: 24,
-	p: 4,
-}
+import { CloseButton } from '../components/Button/Close-button/Close-button'
 
 type PropsType = {
 	children: ReactNode
@@ -28,21 +14,16 @@ type PropsType = {
 export const BasicModal = (props: PropsType) => {
 
 	const { children, open, modalName, handleClose, currencyName } = props
-	return (
-		<Modal
-			open={open}
-			onClose={handleClose}
-			aria-labelledby='modal-modal-title'
-			aria-describedby='modal-modal-description'
-		>
-			<Box sx={BoxStyle}>
+	return !open ? null : (
+		<div className={style.modalBlock}>
+			<div className={style.modalContainer}>
 				<div className={style.header}>
 					<span>{modalName} {currencyName}</span>
-					<CloseIcon onClick={handleClose} fontSize={'small'} />
+					<CloseButton onClick={handleClose} />
 				</div>
 				<hr />
 				{children}
-			</Box>
-		</Modal>
+			</div>
+		</div>
 	)
 }
