@@ -13,10 +13,12 @@ function App() {
 	useEffect(() => {
 		dispatch(getPopularCurrThunk())
 		dispatch(getCurrenciesThunk())
+		if (localStorage.getItem('storedCurrencies')) {
 			const currencies: string[] = JSON.parse(localStorage.getItem('storedCurrencies') || '')
 			const previousTotalPrice = JSON.parse(localStorage.getItem('storedTotalPrice') || '')
 			const amount = JSON.parse(localStorage.getItem('storedCurrAmounts') || '')
 			dispatch(loadCurrToProfileThunk(currencies, previousTotalPrice, amount))
+		}
 	}, [])
 
 	return (
