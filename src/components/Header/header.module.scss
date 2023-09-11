@@ -1,10 +1,12 @@
+@import 'src/SCSS/variables';
+
 .container {
   display: flex;
   flex-direction: row !important;
   justify-content: space-between;
 
-  background-color: #1976d2;
-  color: #ffff;
+  background-color: $secondaryColor;
+  color: $mainColor;
 
   padding: 0 20px;
 }
