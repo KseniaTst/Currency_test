@@ -1,12 +1,3 @@
-import {
-	TableBody,
-	TableContainer,
-	TableHead,
-	Table,
-	TableRow,
-	TableCell,
-	Paper,
-} from '@mui/material'
 import { AddCurrencyModal } from './add-currency-modal/Add-currency-modal'
 import style from './main.module.scss'
 import { useAppSelector } from '../../common/hooks/use-app-selector'
@@ -30,48 +21,46 @@ export const CurrencyTable = () => {
 
 	}
 
-	useEffect(()=> {
+	useEffect(() => {
 		if (currencyAmount.length > 0)
 			localStorage.setItem('storedCurrAmounts', JSON.stringify(currencyAmount))
 	}, [currencyAmount])
 
 	return (
 		<section>
-		<TableContainer component={Paper} className={style.tableContainer}>
-			<Table>
-				<TableHead>
-					<TableRow>
-						<TableCell width={'100px'}>Name</TableCell>
-						<TableCell width={'50px'}>
-							Price USD
-						</TableCell>
-						<TableCell align='center' width={'70px'}>
-							Supply
-						</TableCell>
-						<TableCell align='center' width={'100px'}>
-							Add
-						</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{currencies.map(curr => {
-						const price = Number(curr.priceUsd).toFixed(4)
-						const supply = Number(curr.supply).toFixed(4)
-						return (
-							<TableRow>
-								<TableCell><NavLink to={`/${curr.id}`}>{curr.name}</NavLink></TableCell>
-								<TableCell>{price}</TableCell>
-								<TableCell>{supply}</TableCell>
-								<TableCell align={'center'}>
-									<AddCurrencyModal addCurrToProfile={addCurrToProfile} currency={curr} />
-								</TableCell>
-							</TableRow>
-						)
-					})}
-				</TableBody>
-			</Table>
-		</TableContainer>
-			<TablePagination/>
+			<table className={style.tableContainer}>
+				<thead>
+				<tr>
+					<th>Name</th>
+					<th>
+						Price USD
+					</th>
+					<th>
+						Supply
+					</th>
+					<th>
+						Add
+					</th>
+				</tr>
+				</thead>
+				<tbody>
+				{currencies.map(curr => {
+					const price = Number(curr.priceUsd).toFixed(4)
+					const supply = Number(curr.supply).toFixed(4)
+					return (
+						<tr>
+							<td><NavLink to={`/${curr.id}`}>{curr.name}</NavLink></td>
+							<td>{price}</td>
+							<td>{supply}</td>
+							<td>
+								<AddCurrencyModal addCurrToProfile={addCurrToProfile} currency={curr} />
+							</td>
+						</tr>
+					)
+				})}
+				</tbody>
+			</table>
+			<TablePagination />
 		</section>
 	)
 }
