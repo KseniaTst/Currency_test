@@ -1,6 +1,55 @@
+@import 'src/SCSS/variables';
+
 .container {
-  max-width: 25%;
-  margin:15px auto;
+  list-style-type: none;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  max-width: 40%;
+  margin: 15px auto;
+
+  li {
+    display: inline-block;
+
+
+    &:last-child, &:first-child {
+      a {
+        border: none !important;
+        font-weight: bold;
+      }
+    }
+
+    a {
+      display: block;
+      text-align: center;
+      font-size: 14px;
+
+      width: 25px;
+      height: 25px;
+      padding: 5px;
+      margin: 2px;
+
+      border: 1px solid $secondaryColor;
+      border-radius: 30px;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: $secondaryColor;
+        color: $mainColor;
+      }
+    }
+  }
+
+  :global {
+    .selected {
+      a {
+        background-color: $secondaryColor;
+        color: $mainColor;
+      }
+    }
+  }
 }
 
 @media (max-width: 760px) {
