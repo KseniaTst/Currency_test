@@ -3,7 +3,6 @@ import { useAppDispatch } from '../../../common/hooks/use-app-dispatch'
 import { getCurrencyThunk, getHistoryThunk } from '../main-slice'
 import { NavLink, useParams } from 'react-router-dom'
 import { useAppSelector } from '../../../common/hooks/use-app-selector'
-import { List, ListItem } from '@mui/material'
 import { Chart } from '../../../common/components/Chart'
 import style from './currency-page.module.scss'
 import { AddCurrencyModal } from '../add-currency-modal/Add-currency-modal'
@@ -47,15 +46,15 @@ export const CurrencyPage = () => {
 			<h2>{currency.name}</h2>
 			<AddCurrencyModal addCurrToProfile={addCurrToProfile} currency={currency} />
 			<div className={style.pageBlock}>
-				<List>
-					<ListItem>Symbol: {currency.symbol}</ListItem>
-					<ListItem>Supply: {currency.supply}</ListItem>
-					<ListItem>Price: {currency.priceUsd} USD</ListItem>
-					<ListItem>Rank: {currency.rank}</ListItem>
-					<ListItem>Change: {currency.changePercent24Hr} %</ListItem>
-					<ListItem>Total amount: {currency.marketCapUsd} USD</ListItem>
-					<ListItem>Max supply: {currency.maxSupply}</ListItem>
-				</List>
+				<ul className={style.currPageList}>
+					<li>Symbol: {currency.symbol}</li>
+					<li>Supply: {currency.supply}</li>
+					<li>Price: {currency.priceUsd} USD</li>
+					<li>Rank: {currency.rank}</li>
+					<li>Change: {currency.changePercent24Hr} %</li>
+					<li>Total amount: {currency.marketCapUsd} USD</li>
+					<li>Max supply: {currency.maxSupply}</li>
+				</ul>
 				<h6>History:</h6>
 				<Chart data={history} />
 			</div>
