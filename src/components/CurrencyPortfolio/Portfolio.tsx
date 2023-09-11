@@ -1,10 +1,10 @@
 import BusinessIcon from '../../assets/icons/pngegg.png'
-import { BasicModal } from '../../common/modal/Basic-modal'
+import { BasicModal } from '../../common/modal/BasicModal'
 import style from './portfolio.module.scss'
 import { useCallback, useEffect, useState } from 'react'
-import { useAppSelector } from '../../common/hooks/use-app-selector'
-import { useAppDispatch } from '../../common/hooks/use-app-dispatch'
-import { removeCurrency } from './portfolio-slice'
+import { useAppSelector } from '../../common/hooks/useAppSelector'
+import { useAppDispatch } from '../../common/hooks/useAppDispatch'
+import { removeCurrency } from './portfolioSlice'
 import { DeleteButton } from '../../common/components/Button/DeleteButton/DeleteButton'
 
 export const Portfolio = () => {

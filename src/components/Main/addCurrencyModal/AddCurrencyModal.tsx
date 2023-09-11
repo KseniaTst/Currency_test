@@ -1,8 +1,8 @@
 import { TextField } from '../../../common/components/TextField/TextField'
-import { BasicModal } from '../../../common/modal/Basic-modal'
+import { BasicModal } from '../../../common/modal/BasicModal'
 import { ChangeEvent, useState } from 'react'
-import style from './add-currency-modal.module.scss'
-import { CurrencyType } from '../../Header/header-api'
+import style from './addCurrencyModal.module.scss'
+import { CurrencyType } from '../../Header/headerApi'
 import { CustomButton } from '../../../common/components/Button/Button'
 
 type PropsType = {
@@ -15,7 +15,7 @@ export const AddCurrencyModal = (props: PropsType) => {
 	const { addCurrToProfile, currency } = props
 
 	const [open, setOpen] = useState(false)
-	const [amount, setAmount] = useState(0)
+	const [amount, setAmount] = useState('')
 
 
 	const handleClose = () => setOpen(false)
@@ -23,11 +23,13 @@ export const AddCurrencyModal = (props: PropsType) => {
 	const handleOpen = () => setOpen(true)
 
 	const handleChangeAmount = (event: ChangeEvent<HTMLInputElement>) => {
-		setAmount(event.currentTarget.valueAsNumber)
+		const number = parseFloat(event.currentTarget.value)
+		number && setAmount(event.currentTarget.value)
 	}
 
 	const handleClickAdd = () => {
-		addCurrToProfile(amount, currency)
+		const number = parseFloat(amount)
+		addCurrToProfile(number, currency)
 		setOpen(false)
 	}
 	return (
@@ -36,16 +38,6 @@ export const AddCurrencyModal = (props: PropsType) => {
 			<BasicModal open={open} handleClose={handleClose} modalName={'Add'} currencyName={currency.name}>
 				<div className={style.textContainer}>
 					<TextField value={amount} onChange={handleChangeAmount} label={'Amount'} />
-					{/*<TextField*/}
-					{/*	type={'number'}*/}
-					{/*	variant={'standard'}*/}
-					{/*	value={amount}*/}
-					{/*	onChange={handleChangeAmount}*/}
-					{/*	label={'amount'}*/}
-					{/*	fullWidth*/}
-					{/*	placeholder={'0.1'}*/}
-					{/*	autoFocus*/}
-					{/*/>*/}
 				</div>
 				<div className={style.buttonBlock}>
 					<CustomButton text={'Close'} onClick={handleClose} />

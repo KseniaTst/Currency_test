@@ -1,8 +1,8 @@
 import { AnyAction, combineReducers, configureStore, ThunkAction, ThunkDispatch } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk'
-import { headerSlice } from '../components/Header/header-slice'
-import { mainSlice } from '../components/Main/main-slice'
-import { portfolioSlice } from '../components/Currency-portfolio/portfolio-slice'
+import { headerSlice } from '../components/Header/headerSlice'
+import { mainSlice } from '../components/Main/mainSlice'
+import { portfolioSlice } from '../components/CurrencyPortfolio/portfolioSlice'
 
 const RootReducer = combineReducers({
 	header: headerSlice.reducer,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useAppDispatch } from '../../../common/hooks/use-app-dispatch'
-import { getCurrenciesThunk } from '../main-slice'
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { getCurrenciesThunk } from '../mainSlice'
 import style from './pagination.module.scss'
 import ReactPaginate from 'react-paginate';
 
@@ -21,7 +21,7 @@ export const TablePagination = () => {
       nextLabel=">"
       onPageChange={handleChange}
       pageRangeDisplayed={15}
-      pageCount={2000/15}
+      pageCount={Math.ceil(2000/15)}
       previousLabel="<"
       renderOnZeroPageCount={null}
     />

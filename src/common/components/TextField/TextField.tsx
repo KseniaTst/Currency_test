@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react'
 import style from './textField.module.scss'
 
 type PropsType = {
-	value: number
+	value: string
 	onChange: (event: ChangeEvent<HTMLInputElement>) => void
 	label: string
 }

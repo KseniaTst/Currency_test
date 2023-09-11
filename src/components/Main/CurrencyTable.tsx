@@ -1,11 +1,11 @@
-import { AddCurrencyModal } from './add-currency-modal/Add-currency-modal'
+import { AddCurrencyModal } from './addCurrencyModal/AddCurrencyModal'
 import style from './main.module.scss'
-import { useAppSelector } from '../../common/hooks/use-app-selector'
+import { useAppSelector } from '../../common/hooks/useAppSelector'
 import { NavLink } from 'react-router-dom'
-import { useAppDispatch } from '../../common/hooks/use-app-dispatch'
-import { getCurrToProfileThunk } from '../Currency-portfolio/portfolio-slice'
-import { CurrencyType } from '../Header/header-api'
-import { TablePagination } from './Pagination/Table-pagination'
+import { useAppDispatch } from '../../common/hooks/useAppDispatch'
+import { getCurrToProfileThunk } from '../CurrencyPortfolio/portfolioSlice'
+import { CurrencyType } from '../Header/headerApi'
+import { TablePagination } from './Pagination/TablePagination'
 import { useEffect } from 'react'
 
 export const CurrencyTable = () => {
@@ -48,7 +48,7 @@ export const CurrencyTable = () => {
 					const price = Number(curr.priceUsd).toFixed(4)
 					const supply = Number(curr.supply).toFixed(4)
 					return (
-						<tr>
+						<tr key={curr.id}>
 							<td><NavLink to={`/${curr.id}`}>{curr.name}</NavLink></td>
 							<td>{price}</td>
 							<td>{supply}</td>

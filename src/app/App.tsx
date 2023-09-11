@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
-import './App.css'
 import { Header } from '../components/Header/Header'
 import { Main } from '../components/Main/Main'
-import { useAppDispatch } from '../common/hooks/use-app-dispatch'
-import { getPopularCurrThunk } from '../components/Header/header-slice'
-import { getCurrenciesThunk } from '../components/Main/main-slice'
-import { loadCurrToProfileThunk } from '../components/Currency-portfolio/portfolio-slice'
+import { useAppDispatch } from '../common/hooks/useAppDispatch'
+import { getPopularCurrThunk } from '../components/Header/headerSlice'
+import { getCurrenciesThunk } from '../components/Main/mainSlice'
+import { loadCurrToProfileThunk } from '../components/CurrencyPortfolio/portfolioSlice'
 
 function App() {
 
@@ -21,7 +20,7 @@ function App() {
 	}, [])
 
 	return (
-		<div className='App'>
+		<div >
 			<Header />
 			<Main />
 		</div>

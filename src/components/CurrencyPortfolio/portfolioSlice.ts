@@ -1,9 +1,9 @@
-import { CurrencyType, ResponseGetCurrType } from '../Header/header-api'
+import { CurrencyType, ResponseGetCurrType } from '../Header/headerApi'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ThunkType } from '../../app/store'
-import { portfolioApi } from './portfolio-api'
+import { portfolioApi } from './portfolioApi'
 import { AxiosResponse } from 'axios'
-import { getTotalPrice } from '../../common/utils/get-total-price'
+import { getTotalPrice } from '../../common/utils/getTotalPrice'
 
 const initialState = {
 	portfolioData: {
@@ -60,13 +60,14 @@ export const getCurrToProfileThunk = (amount: number, currency: CurrencyType): T
 		const updCurrency = { ...currency, priceUsd: price.toString() }
 		const id = getState().portfolio.portfolioData.currencies.find(el => el.id === currency.id)
 
-		if (amount > 0) {
+		if (amount >= 0.0001) {
 			if (id) {
 				dispatch(changeCurrPrice({ id: currency.id, price: price }))
 				return
 			}
-			dispatch(setCurrToProfile({ currency: updCurrency, amount }))
+			return dispatch(setCurrToProfile({ currency: updCurrency, amount }))
 		}
+		alert('The amount should be more than 0.0001')
 	}
 export const loadCurrToProfileThunk = (currencies: string[], previousTotalPrice: number, amount: CurrencyAmount[]): ThunkType =>
 	(dispatch) => {

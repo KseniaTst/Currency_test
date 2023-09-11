@@ -1,4 +1,4 @@
-import style from './close-button.module.scss'
+import style from './closeButton.module.scss'
 
 type PropsType={
 	onClick: () => void

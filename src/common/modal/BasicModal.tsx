@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ReactNode } from 'react'
-import style from './basic-modal.module.scss'
-import { CloseButton } from '../components/Button/Close-button/Close-button'
+import style from './basicModal.module.scss'
+import { CloseButton } from '../components/Button/CloseButton/CloseButton'
 
 type PropsType = {
 	children: ReactNode

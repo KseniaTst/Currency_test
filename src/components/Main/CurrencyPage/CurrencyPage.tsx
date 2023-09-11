@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
-import { useAppDispatch } from '../../../common/hooks/use-app-dispatch'
-import { getCurrencyThunk, getHistoryThunk } from '../main-slice'
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
+import { getCurrencyThunk, getHistoryThunk } from '../mainSlice'
 import { NavLink, useParams } from 'react-router-dom'
-import { useAppSelector } from '../../../common/hooks/use-app-selector'
+import { useAppSelector } from '../../../common/hooks/useAppSelector'
 import { Chart } from '../../../common/components/Chart'
-import style from './currency-page.module.scss'
-import { AddCurrencyModal } from '../add-currency-modal/Add-currency-modal'
-import { CurrencyType } from '../../Header/header-api'
-import { getCurrToProfileThunk } from '../../Currency-portfolio/portfolio-slice'
+import style from './currencyPage.module.scss'
+import { AddCurrencyModal } from '../addCurrencyModal/AddCurrencyModal'
+import { CurrencyType } from '../../Header/headerApi'
+import { getCurrToProfileThunk } from '../../CurrencyPortfolio/portfolioSlice'
 
 export const CurrencyPage = () => {
 	const params = useParams()

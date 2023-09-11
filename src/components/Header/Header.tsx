@@ -1,6 +1,6 @@
 import style from './header.module.scss'
-import { Portfolio } from '../Currency-portfolio/Portfolio'
-import { useAppSelector } from '../../common/hooks/use-app-selector'
+import { Portfolio } from '../CurrencyPortfolio/Portfolio'
+import { useAppSelector } from '../../common/hooks/useAppSelector'
 
 export const Header = () => {
 

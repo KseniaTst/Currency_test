@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between !important;
+
+    p {
+      min-width: 110px;
+    }
 }
 
 .iconContainer {
