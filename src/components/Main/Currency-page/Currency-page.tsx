@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
-import { useAppDispatch } from '../../common/hooks/use-app-dispatch'
-import { getCurrencyThunk, getHistoryThunk } from './main-slice'
-import { useParams } from 'react-router-dom'
-import { useAppSelector } from '../../common/hooks/use-app-selector'
+import { useAppDispatch } from '../../../common/hooks/use-app-dispatch'
+import { getCurrencyThunk, getHistoryThunk } from '../main-slice'
+import { NavLink, useParams } from 'react-router-dom'
+import { useAppSelector } from '../../../common/hooks/use-app-selector'
 import { List, ListItem } from '@mui/material'
-import { Chart } from '../../common/conponents/Chart'
-import style from './main.module.scss'
-import { AddCurrencyModal } from './add-currency-modal/Add-currency-modal'
-import { CurrencyType } from '../Header/header-api'
-import { getCurrToProfileThunk } from '../Currency-portfolio/portfolio-slice'
+import { Chart } from '../../../common/conponents/Chart'
+import style from './currency-page.module.scss'
+import { AddCurrencyModal } from '../add-currency-modal/Add-currency-modal'
+import { CurrencyType } from '../../Header/header-api'
+import { getCurrToProfileThunk } from '../../Currency-portfolio/portfolio-slice'
 
 export const CurrencyPage = () => {
 	const params = useParams()
@@ -31,14 +31,19 @@ export const CurrencyPage = () => {
 		}
 	}, [])
 
-	useEffect(()=> {
+	useEffect(() => {
 		if (currencyAmount.length > 0)
 			localStorage.setItem('storedCurrAmounts', JSON.stringify(currencyAmount))
 	}, [currencyAmount])
 
 
 	return (
-		<section>
+		<section className={style.currPageContainer}>
+			<div className={style.backButton}>
+				<NavLink to={'/'}>
+					<p><i className={style.arrowLeft}/>back</p>
+				</NavLink>
+			</div>
 			<h2>{currency.name}</h2>
 			<AddCurrencyModal addCurrToProfile={addCurrToProfile} currency={currency} />
 			<div className={style.pageBlock}>

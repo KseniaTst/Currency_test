@@ -22,21 +22,6 @@
   }
 }
 
-.pageBlock {
-  display: flex;
-  flex-direction: column;
-  width: 75%;
-
-  margin: 0 auto;
-
-  h6 {
-    padding-left: 16px;
-
-    font-weight: 400;
-    font-size: 16px;
-    text-align: left;
-  }
-}
 
 @media (max-width: 960px) {
   .tableContainer {
