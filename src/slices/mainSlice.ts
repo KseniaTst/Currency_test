@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ThunkType } from '../../app/store'
+import { ThunkType } from '../store/store'
 import { AxiosResponse } from 'axios'
-import { HistoryType, mainApi } from '../../services/mainApi'
-import { CurrencyType, ResponseGetCurrType } from '../../services/headerApi'
+import { HistoryType, mainApi } from '../services/mainApi'
+import { CurrencyType, ResponseGetCurrType } from '../services/headerApi'
 
 const initialState = {
 	mainData: {

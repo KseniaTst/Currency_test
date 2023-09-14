@@ -1,9 +1,9 @@
-import { CurrencyType, ResponseGetCurrType } from '../../services/headerApi'
+import { CurrencyType, ResponseGetCurrType } from '../services/headerApi'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ThunkType } from '../../app/store'
-import { portfolioApi } from '../../services/portfolioApi'
+import { ThunkType } from '../store/store'
+import { portfolioApi } from '../services/portfolioApi'
 import { AxiosResponse } from 'axios'
-import { getTotalPrice } from '../../common/utils/getTotalPrice'
+import { getTotalPrice } from '../common/utils/getTotalPrice'
 
 const initialState = {
 	portfolioData: {
