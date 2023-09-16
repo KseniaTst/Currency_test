@@ -1,7 +1,12 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CurrencyType, headerApi, ResponseGetCurrType } from '../services/headerApi'
-import { ThunkType } from '../store/store'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { AxiosResponse } from 'axios'
+
+import {
+	CurrencyType,
+	ResponseGetCurrType,
+	headerApi,
+} from '../services/headerApi'
+import { ThunkType } from '../store/store'
 
 const initialState = {
 	headerData: {
@@ -21,15 +26,13 @@ export const headerSlice = createSlice({
 
 export const { setPopularCurrencies } = headerSlice.actions
 
-export const getPopularCurrThunk =
-	(): ThunkType =>
-		(dispatch) => {
-			headerApi
-				.getPopularCurr()
-				.then((res: AxiosResponse<ResponseGetCurrType>) => {
-					dispatch(setPopularCurrencies(res.data.data))
-				})
-				.catch((error) => {
-					alert(error)
-				})
-		}
+export const getPopularCurrThunk = (): ThunkType => dispatch => {
+	headerApi
+		.getPopularCurr()
+		.then((res: AxiosResponse<ResponseGetCurrType>) => {
+			dispatch(setPopularCurrencies(res.data.data))
+		})
+		.catch(error => {
+			alert(error)
+		})
+}

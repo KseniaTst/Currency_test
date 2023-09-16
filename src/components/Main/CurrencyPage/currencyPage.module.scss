@@ -1,67 +1,68 @@
-.currPageContainer {
+.currPage {
   width: 75%;
   margin: auto;
   align-items: center;
 
+  &__backButtonWrapper {
+    display: flex;
+    margin: 5px;
+
+    a {
+      text-decoration: none;
+      padding: 5px;
+
+      & :hover {
+        text-decoration: none;
+        scale: 1.2;
+        transition: 0.3s ease-in-out;
+      }
+    }
+
+    p {
+      width: fit-content;
+      margin: 0;
+    }
+  }
+
+  &__arrowLeft {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+
+    display: inline-block;
+
+    padding: 3px;
+    margin-right: 5px;
+
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+
   button {
     margin-left: 16px;
   }
-  h2 {
+
+  &__name {
     text-align: center;
   }
-}
 
-.pageBlock {
-  display: flex;
-  flex-direction: column;
+  &__info {
+    display: flex;
+    flex-direction: column;
 
-  margin: auto;
-
-  h6 {
-    padding-left: 16px;
-    font-weight: 400;
-    font-size: 16px;
-    text-align: left;
+    margin: auto;
   }
 
-  ul {
+  &__list {
     list-style-type: none;
     text-align: left;
 
     padding: 0 16px;
   }
-}
 
-.backButton {
-  display: flex;
-  margin: 5px;
-
-  a {
-    text-decoration: none;
-    padding: 5px;
-
-    & :hover {
-      text-decoration: none;
-      scale: 1.2;
-      transition: 0.3s ease-in-out;
-    }
+  &__history {
+    padding-left: 16px;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: left;
   }
-
-  p {
-    width: fit-content;
-    margin: 0;
-  }
-}
-
-.arrowLeft {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-
-  display: inline-block;
-
-  padding: 3px;
-  margin-right: 5px;
-
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
 }

@@ -5,5 +5,25 @@
   "arrowParens": "avoid",
   "semi": false,
   "trailingComma": "es5",
-  "useTabs": true
+  "useTabs": true,
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "importOrder": [
+    "interface",
+    "<THIRD_PARTY_MODULES>",
+    "(?=content|api)",
+    "slices/",
+    "context/",
+    "config",
+    "utils/",
+    "hooks/",
+    "common/",
+    "components/",
+    ".svg",
+    "^../(.*)$",
+    "(?=./*.module.scss)"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

@@ -1,12 +1,4 @@
-.header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  padding-bottom: 5px;
-}
-
-.modalBlock {
+.modal {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   z-index: 1300;
@@ -18,32 +10,44 @@
   bottom: 0;
   top: 0;
   left: 0;
-}
 
-.modalContainer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 400px;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 11px 15px -7px, rgba(0, 0, 0, 0.14) 0px 24px 38px 3px, rgba(0, 0, 0, 0.12) 0px 9px 46px 8px;
-  padding: 32px;
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 11px 15px -7px, rgba(0, 0, 0, 0.14) 0px 24px 38px 3px, rgba(0, 0, 0, 0.12) 0px 9px 46px 8px;
+    padding: 32px;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding-bottom: 5px;
+  }
 }
 
 @media (max-width: 520px) {
-  .header {
-    button {
-      top: 10px;
-      right: 20px;
+  .modal {
+    &__header {
+      button {
+        top: 10px;
+        right: 20px;
+      }
+    }
+
+    &__container {
+      width: auto;
+      min-width: 300px;
+      padding: 10px;
     }
   }
-  .modalContainer {
-    width: auto;
-    min-width: 300px;
-    padding: 10px;
-  }
+
 }

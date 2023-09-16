@@ -1,9 +1,11 @@
-import { CurrencyType, ResponseGetCurrType } from '../services/headerApi'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ThunkType } from '../store/store'
-import { portfolioApi } from '../services/portfolioApi'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { AxiosResponse } from 'axios'
+
 import { getTotalPrice } from '../common/utils/getTotalPrice'
+
+import { CurrencyType, ResponseGetCurrType } from '../services/headerApi'
+import { portfolioApi } from '../services/portfolioApi'
+import { ThunkType } from '../store/store'
 
 const initialState = {
 	portfolioData: {
@@ -23,42 +25,58 @@ export const portfolioSlice = createSlice({
 		loadCurrencies(state, action: PayloadAction<LoadCurrType>) {
 			state.portfolioData.currencies = action.payload.currencies
 			state.previousTotalPrice = action.payload.previousTotalPrice
-			state.portfolioData.totalPrice = getTotalPrice(state.portfolioData.currencies)
-
+			state.portfolioData.totalPrice = getTotalPrice(
+				state.portfolioData.currencies
+			)
 		},
 		setCurrToProfile(state, action: PayloadAction<setCurrToProfileType>) {
 			state.portfolioData.currencies.push(action.payload.currency)
-			state.portfolioData.totalPrice = getTotalPrice(state.portfolioData.currencies)
-			state.currencyAmount.push({ key: action.payload.currency.id, amount: Number(action.payload.amount) })
+			state.portfolioData.totalPrice = getTotalPrice(
+				state.portfolioData.currencies
+			)
+			state.currencyAmount.push({
+				key: action.payload.currency.id,
+				amount: Number(action.payload.amount),
+			})
 		},
 		removeCurrency(state, action: PayloadAction<RemoveCurrPayloadType>) {
-			const index = state.portfolioData.currencies.findIndex(curr => curr.id === action.payload.id)
+			const index = state.portfolioData.currencies.findIndex(
+				curr => curr.id === action.payload.id
+			)
 			if (index !== -1) {
 				state.portfolioData.currencies.splice(index, 1)
-				state.portfolioData.totalPrice = state.portfolioData.totalPrice - Number(action.payload.price)
-
+				state.portfolioData.totalPrice =
+					state.portfolioData.totalPrice - Number(action.payload.price)
 			}
 		},
 		changeCurrPrice(state, action: PayloadAction<ChangeCurrPayloadType>) {
 			state.portfolioData.currencies.map(curr => {
 				if (curr.id === action.payload.id) {
 					const newPrice = Number(curr.priceUsd) + action.payload.price
-					state.portfolioData.totalPrice = state.portfolioData.totalPrice + action.payload.price
-					return curr.priceUsd = newPrice.toString()
-
+					state.portfolioData.totalPrice =
+						state.portfolioData.totalPrice + action.payload.price
+					return (curr.priceUsd = newPrice.toString())
 				}
 			})
 		},
 	},
 })
 
-export const { setCurrToProfile, removeCurrency, changeCurrPrice, loadCurrencies } = portfolioSlice.actions
+export const {
+	setCurrToProfile,
+	removeCurrency,
+	changeCurrPrice,
+	loadCurrencies,
+} = portfolioSlice.actions
 
-export const getCurrToProfileThunk = (amount: number, currency: CurrencyType): ThunkType =>
+export const getCurrToProfileThunk =
+	(amount: number, currency: CurrencyType): ThunkType =>
 	(dispatch, getState) => {
 		const price = Number(currency.priceUsd) * amount
 		const updCurrency = { ...currency, priceUsd: price.toString() }
-		const id = getState().portfolio.portfolioData.currencies.find(el => el.id === currency.id)
+		const id = getState().portfolio.portfolioData.currencies.find(
+			el => el.id === currency.id
+		)
 
 		if (amount >= 0.0001) {
 			if (id) {
@@ -69,8 +87,13 @@ export const getCurrToProfileThunk = (amount: number, currency: CurrencyType): T
 		}
 		alert('The amount should be more than 0.0001')
 	}
-export const loadCurrToProfileThunk = (currencies: string[], previousTotalPrice: number, amount: CurrencyAmount[]): ThunkType =>
-	(dispatch) => {
+export const loadCurrToProfileThunk =
+	(
+		currencies: string[],
+		previousTotalPrice: number,
+		amount: CurrencyAmount[]
+	): ThunkType =>
+	dispatch => {
 		if (currencies.length === 0) return
 
 		portfolioApi
@@ -79,11 +102,15 @@ export const loadCurrToProfileThunk = (currencies: string[], previousTotalPrice:
 				res.data.data.map(curr => {
 					amount.map(el => {
 						if (curr.id === el.key) {
-							return curr.priceUsd = (Number(curr.priceUsd) * el.amount).toString()
+							return (curr.priceUsd = (
+								Number(curr.priceUsd) * el.amount
+							).toString())
 						}
 					})
 				})
-				dispatch(loadCurrencies({ currencies: res.data.data, previousTotalPrice }))
+				dispatch(
+					loadCurrencies({ currencies: res.data.data, previousTotalPrice })
+				)
 			})
 			.catch(error => {
 				alert(error)
@@ -91,11 +118,11 @@ export const loadCurrToProfileThunk = (currencies: string[], previousTotalPrice:
 	}
 
 type ChangeCurrPayloadType = {
-	id: string,
+	id: string
 	price: number
 }
 type RemoveCurrPayloadType = {
-	id: string,
+	id: string
 	price: string
 }
 type LoadCurrType = {

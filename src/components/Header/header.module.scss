@@ -1,6 +1,6 @@
 @import 'src/SCSS/variables';
 
-.container {
+.header {
   display: flex;
   flex-direction: row !important;
   justify-content: space-between;
@@ -9,45 +9,47 @@
   color: $mainColor;
 
   padding: 0 20px;
-}
 
-.popularCurrBlock {
-  display: flex;
-}
+  &__popularCurrWrapper {
+    display: flex;
+  }
 
-.currBlock {
-  display: flex;
-  flex-direction: column;
-  padding: 5px 15px;
+  &__currBlock {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 15px;
+  }
 
-  h6 {
+  &__currencyPrice {
     font-size: 20px;
     margin: 0;
   }
 
-  p {
+  &__currencyName {
     margin: 0;
     font-weight: 300;
   }
-}
 
-.profileBlock {
-  display: flex;
-  justify-content: right;
+  &__profileWrapper {
+    display: flex;
+    justify-content: right;
 
-  h6 {
-    margin: auto 5px auto 15px;
-    font-size: 15px;
-  }
+    &__totalPrice {
+      margin: auto 5px auto 15px;
+      font-size: 15px;
+    }
 
-  p {
-    margin: auto 5px auto 0;
-    font-size: 15px;
+    &__text {
+      margin: auto 5px auto 0;
+      font-size: 15px;
+    }
   }
 }
 
 @media (max-width: 650px) {
-  .currBlock {
-    display: none;
+  .header {
+    &__currBlock {
+      display: none;
+    }
   }
 }

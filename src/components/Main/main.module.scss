@@ -1,10 +1,10 @@
 @import 'src/SCSS/variables';
 
-.container {
+.wrapper {
   padding-top: 120px;
 }
 
-.tableContainer {
+.mainTable {
   width: 50% !important;
   max-width: 690px;
   margin: 0 auto;
@@ -15,15 +15,15 @@
 
   box-shadow: rgba(0, 0, 0, 0.2) 0 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
 
-  th {
+  &__head {
     padding: 5px;
   }
-  td {
+  &__data {
     padding: 10px 5px ;
     border-bottom: 1px solid $grey;
   }
 
-  a {
+  &__navLink {
     color: black;
 
     cursor: pointer;
@@ -40,7 +40,7 @@
 
 
 @media (max-width: 480px) {
-  .tableContainer {
+  .mainTable {
     font-size: 12px;
 
     button {
@@ -51,7 +51,7 @@
 
 }
 @media (max-width: 960px) {
-  .tableContainer {
+  .mainTable {
     width: 90% !important;
   }
 

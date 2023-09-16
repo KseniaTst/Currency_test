@@ -1,35 +1,34 @@
-.listItem {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between !important;
+.portfolio {
 
-    p {
-      min-width: 110px;
-    }
-}
+  &__iconContainer {
+    display: flex;
+    flex-direction: column;
 
-.iconContainer {
-  display: flex;
-  flex-direction: column;
+    width: 65px;
+    height: 55px;
 
-  width: 65px;
-  height: 55px;
+    padding: 5px;
+    overflow: hidden;
 
-  padding: 5px;
-  overflow: hidden;
+    cursor: pointer;
+  }
 
-  cursor: pointer;
-
-  img {
+  &__icon {
     width: 50%;
     margin: 0 auto;
   }
 
-  a {
+  &__iconText {
     font-size: 14px;
   }
-}
 
-.icon {
-  margin: auto 0;
+  &__listItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between !important;
+
+  }
+  &__listItemText {
+    min-width: 110px;
+  }
 }

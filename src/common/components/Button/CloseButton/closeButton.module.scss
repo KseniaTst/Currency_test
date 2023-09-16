@@ -16,24 +16,24 @@
   &:hover {
     opacity: 1;
   }
-}
 
-.close::before,
-.close::after {
-  content: '';
-  position: absolute;
-  top: 10px;
-  display: block;
-  width: 20px;
-  height: 3px;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    display: block;
+    width: 20px;
+    height: 3px;
 
-  background: #000;
-}
+    background: #000;
+  }
 
-.close::before {
-  transform: rotate(45deg);
-}
+  &::before {
+    transform: rotate(45deg);
+  }
 
-.close::after {
-  transform: rotate(-45deg);
+  &::after {
+    transform: rotate(-45deg);
+  }
 }

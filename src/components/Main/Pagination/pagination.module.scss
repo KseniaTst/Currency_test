@@ -1,6 +1,6 @@
 @import 'src/SCSS/variables';
 
-.container {
+.paginate {
   list-style-type: none;
 
   display: flex;
@@ -64,8 +64,9 @@
     }
   }
 }
+
 @media (max-width: 760px) {
-  .container {
+  .paginate {
     max-width: 80%
   }
 }

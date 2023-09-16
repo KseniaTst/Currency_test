@@ -1,13 +1,18 @@
 import { useEffect } from 'react'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { getCurrencyThunk, getHistoryThunk } from '../mainSlice'
 import { NavLink, useParams } from 'react-router-dom'
+
+import { getCurrencyThunk, getHistoryThunk } from '../../../slices/mainSlice'
+import { getCurrToProfileThunk } from '../../../slices/portfolioSlice'
+
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
 import { useAppSelector } from '../../../common/hooks/useAppSelector'
+
 import { Chart } from '../../../common/components/Chart'
-import style from './currencyPage.module.scss'
-import { AddCurrencyModal } from '../addCurrencyModal/AddCurrencyModal'
+
 import { CurrencyType } from '../../../services/headerApi'
-import { getCurrToProfileThunk } from '../../CurrencyPortfolio/portfolioSlice'
+import { AddCurrencyModal } from '../addCurrencyModal/AddCurrencyModal'
+
+import style from './currencyPage.module.scss'
 
 export const CurrencyPage = () => {
 	const params = useParams()
@@ -17,7 +22,6 @@ export const CurrencyPage = () => {
 	const currency = useAppSelector(state => state.main.mainData.selectedCurrency)
 	const history = useAppSelector(state => state.main.mainData.currencyHistory)
 	const currencyAmount = useAppSelector(state => state.portfolio.currencyAmount)
-
 
 	const addCurrToProfile = (amount: number, currency: CurrencyType) => {
 		dispatch(getCurrToProfileThunk(amount, currency))
@@ -35,18 +39,23 @@ export const CurrencyPage = () => {
 			localStorage.setItem('storedCurrAmounts', JSON.stringify(currencyAmount))
 	}, [currencyAmount])
 
-
 	return (
-		<section className={style.currPageContainer}>
-			<div className={style.backButton}>
+		<section className={style.currPage}>
+			<div className={style.currPage__backButtonWrapper}>
 				<NavLink to={'/'}>
-					<p><i className={style.arrowLeft}/>back</p>
+					<p>
+						<i className={style.currPage__arrowLeft} />
+						back
+					</p>
 				</NavLink>
 			</div>
-			<h2>{currency.name}</h2>
-			<AddCurrencyModal addCurrToProfile={addCurrToProfile} currency={currency} />
-			<div className={style.pageBlock}>
-				<ul className={style.currPageList}>
+			<h2 className={style.currPage__name}>{currency.name}</h2>
+			<AddCurrencyModal
+				addCurrToProfile={addCurrToProfile}
+				currency={currency}
+			/>
+			<div className={style.currPage__info}>
+				<ul className={style.currPage__list}>
 					<li>Symbol: {currency.symbol}</li>
 					<li>Supply: {currency.supply}</li>
 					<li>Price: {currency.priceUsd} USD</li>
@@ -55,7 +64,7 @@ export const CurrencyPage = () => {
 					<li>Total amount: {currency.marketCapUsd} USD</li>
 					<li>Max supply: {currency.maxSupply}</li>
 				</ul>
-				<h6>History:</h6>
+				<h6 className={style.currPage__history}>History:</h6>
 				<Chart data={history} />
 			</div>
 		</section>

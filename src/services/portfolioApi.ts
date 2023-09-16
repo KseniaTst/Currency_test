@@ -1,5 +1,6 @@
-import { instance } from '../common/config/apiConfig'
 import { ResponseGetCurrType } from './headerApi'
+
+import { instance } from '../common/config/apiConfig'
 
 export const portfolioApi = {
 	getPortfolioCurr(curr: string[]) {
