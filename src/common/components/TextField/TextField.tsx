@@ -14,7 +14,8 @@ export const TextField = (props: PropsType) => {
 
 	return (
 		<div className={style.textField}>
-			<label className={style.textField__label} htmlFor="{'input'}">{label}</label>
+			<label className={style.textField__label} >
+				{label}
 			<input className={style.textField__input}
 						 type='number'
 						 name={'input'}
@@ -22,6 +23,7 @@ export const TextField = (props: PropsType) => {
 						 onChange={onChange}
 						 value={value}
 						 autoFocus />
+			</label>
 		</div>
 	)
 }
